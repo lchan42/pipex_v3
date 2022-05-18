@@ -1,5 +1,6 @@
 #include "pipex.h"
 
+/*
 void    px_swap_fds(int **fds1, int **fds2)
 {
     int *tmp;
@@ -34,6 +35,45 @@ void    px_interborn_legacy(t_px *px, t_child *child)
     if (pipe(child->next_fds) == -1)
         px_end_struct_exit(px);
 }
+*/
+
+void    px_close_first_fds(t_list *head)
+{
+    while (head->next)
+    {
+         if (((t_child *)(head->content))->next_fds[0] > 2)
+         {
+            px_close_fd(&(((t_child *)(head->content))->next_fds[RD_END]));
+            px_close_fd(&(((t_child *)(head->content))->next_fds[WR_END]));
+            return ;
+         }
+         head = head->next;
+    }
+}
+
+void    px_firstborn_legacy(t_px *px, t_child *child)
+{
+    child->prev_fds[RD_END] = -2;
+    child->prev_fds[WR_END] = -2;
+    if (pipe(child->next_fds) == -1)
+        px_end_struct_exit(px);
+}
+
+void    px_lastborn_legacy(t_px *px, t_child *child)
+{
+    t_child *prev_child;
+
+    prev_child = px_get_prev_nod(px->child, child->id);
+    child->prev_fds = prev_child->next_fds;
+    if (pipe(child->next_fds) == -1)
+        px_end_struct_exit(px);
+}
+
+void    px_interborn_legacy(t_px *px, t_child *child)
+{
+    if (pipe(child->next_fds) == -1)
+        px_end_struct_exit(px);
+}
 
 void    px_mgmt_pipe(t_px *px, t_child *child)
 {
@@ -43,15 +83,6 @@ void    px_mgmt_pipe(t_px *px, t_child *child)
         px_lastborn_legacy(px, child);
     else
         px_interborn_legacy(px, child);
+    if (child->id > 1)
+        px_close_first_fds(px->child);
 }
-
-/*
-void    px_init_child(t_px *px, int i)
-{
-    int shift;
-
-    shift = 2;
-     px->child.id = i;
-     px_init_cmd_n_path(px, px->entry.av[i + shift]);
-}
-*/

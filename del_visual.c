@@ -81,11 +81,11 @@ void	v_print_child_struct(t_px *px, t_child *child)
 	else
 		fprintf( stderr, "cmd = %p", child->cmd);
 	if (child->prev_fds)
-		fprintf( stderr, "prev_fds[0] = %d & prev_fds[1] = %d\n", 
-		child->prev_fds[0], child->prev_fds[1]);
+		fprintf( stderr, "[%p] prev_fds[0] = %d & prev_fds[1] = %d\n", 
+		child->prev_fds, child->prev_fds[0] , child->prev_fds[1]);
 	if (child->next_fds)
-		fprintf( stderr, "next_fds[0] = %d & next_fds[1] = %d\n", 
-		child->next_fds[0], child->next_fds[1]);
+		fprintf( stderr, "[%p] next_fds[0] = %d & next_fds[1] = %d\n", 
+		child->next_fds, child->next_fds[0], child->next_fds[1]);
 	fprintf( stderr, "\n");
 }
 

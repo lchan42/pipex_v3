@@ -53,6 +53,7 @@ void    px_mgmt_redirection(t_px *px, t_child *child)
         px_lastborn_redirect(px, child);
     else
         px_interborn_redirect(px, child);
+    v_print_child_struct(px, child);
     //exceve(child->path, child->cmd, px->entry.envp);
     //px_end_struct(px);
     //exit(errno);

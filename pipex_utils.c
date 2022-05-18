@@ -40,6 +40,20 @@ t_child *px_get_child_nod(t_list *child, int index)
     return (NULL);
 }
 
+t_child *px_get_prev_nod(t_list *child, int index)
+{
+    if (index > 0)
+    {
+        while (child)
+        {
+            if (((t_child *)(child->content))->id == index - 1)
+                return ((t_child *)child->content);
+            child = child->next;
+        }
+    }
+    return (NULL);
+}
+
 /*
 void    checkinit_struct_sucess(t_px *px)
 {

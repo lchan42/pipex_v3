@@ -9,7 +9,8 @@ t_child *px_init_child_block(char *cmd, int i, char **split_path)
         return (NULL);
     tmp->id = i;
     px_init_cmd_n_path(cmd, split_path, tmp);
-    tmp->prev_fds = (int *)ft_calloc(2, sizeof(int));
+    //tmp->prev_fds = (int *)ft_calloc(2, sizeof(int));
+    tmp->prev_fds = NULL;
     tmp->next_fds = (int *)ft_calloc(2, sizeof(int));
     if (!tmp->path || !tmp->cmd || !tmp->prev_fds || !tmp->next_fds)
         px_del_content(tmp);

@@ -17,6 +17,7 @@ void    px_close_free_fds(int *fds)
         if (fds[1] > 2)
             close (fds[1]);
         free(fds);
+        fds = NULL;
 }
 
 void    px_del_content(t_child *child)

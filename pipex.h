@@ -47,6 +47,7 @@ void	px_check_malloc_success(t_px *px, void *elem);
 void    px_check_open_sucess(int fd, char *input, t_px *px);
 void    px_close_fd(int *fd);
 t_child *px_get_child_nod(t_list *child, int index);
+t_child *px_get_prev_nod(t_list *child, int index);
 
 //pipex_entrycheck.c
 void	px_entrycheck_ac_file(int ac, char **av);
@@ -92,7 +93,8 @@ void	del_print_tab_ac(int ac, char **av);
 void	del_print_child(t_child child);
 void	del_print_main_struct(t_px *px);
 void	visual_print_px(t_px *px);
-
+void	v_print_t_list(t_px *px, t_list *child);
+void	v_print_child_struct(t_px *px, t_child *child);
 
 
 
