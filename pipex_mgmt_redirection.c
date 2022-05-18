@@ -10,7 +10,7 @@ void    px_dup2_n_close(int *fd, int fd2)
 void    px_firstborn_redirect(t_px *px, t_child *child)
 {
     int infile;
-    //fprintf(stderr, "child %d, is doing his execve\n", child->id);
+    fprintf(stderr, "child %d, is doing his redirection(first)\n", child->id);
     px_close_fd(&(child->next_fds[RD_END]));
     infile = open(px->infile, O_RDONLY);
     px_check_open_sucess(infile, px->infile, px);
@@ -23,7 +23,8 @@ void    px_firstborn_redirect(t_px *px, t_child *child)
 void    px_lastborn_redirect(t_px *px, t_child *child)
 {
     int outfile;
-
+    
+    fprintf(stderr, "child %d, is doing his redirection(last)\n", child->id);
     px_close_fd(&(child->prev_fds[WR_END]));
     outfile = open(px->outfile, O_WRONLY | O_TRUNC | O_CREAT, 0644);
     px_check_open_sucess(outfile, px->outfile, px);
@@ -35,7 +36,7 @@ void    px_lastborn_redirect(t_px *px, t_child *child)
 
 void    px_interborn_redirect(t_px *px, t_child *child)
 {
-    fprintf(stderr, "child %d, is doing his redirection\n", child->id);
+    fprintf(stderr, "child %d, is doing his redirection (inter)\n", child->id);
     px_close_fd(&(child->prev_fds[WR_END]));
     px_close_fd(&(child->next_fds[RD_END]));
     if (dup2(child->prev_fds[RD_END], STDIN_FILENO) == -1

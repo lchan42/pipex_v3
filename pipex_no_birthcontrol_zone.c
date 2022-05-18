@@ -2,10 +2,10 @@
 
 void    px_child_exceve(t_px *px, t_child *child)
 {
+    px_mgmt_redirection(px, child);
     if (px_entrycheck_isaccess_f_x(child->path))
     {
-        //fprintf(stderr, "child %d, is doing his execve\n", child->id);
-        //px_mgmt_redirection(px, child);
+        fprintf(stderr, "child %d, is gonna do his execve\n", child->id);
         execve(child->path, child->cmd, px->entry.envp);
     }
     else
