@@ -27,12 +27,12 @@ void    px_firstborn_dup(t_px *px, t_child *child)
 void    px_lastborn_dup(t_px *px, t_child *child, t_child *prev_child)
 {
     int outfile;
-    (void) prev_child;
+    (void)  child;
 
-    //fprintf(stderr, "child %d, is doing his redirection(last)\n", child->id);
+    
     outfile = open(px->outfile, O_WRONLY | O_TRUNC | O_CREAT, 0644);
     px_check_open_sucess(outfile, px->outfile, px);
-    if (dup2(child->fds[RD_END], STDIN_FILENO) == -1
+    if (dup2(prev_child->fds[RD_END], STDIN_FILENO) == -1
         || dup2(outfile, STDOUT_FILENO) == -1)
         px_end_struct_exit(px);
     px_close_fd(&outfile);

@@ -33,7 +33,7 @@ void    px_mgmt_pipe(t_px *px, t_child *child)
 {
     if (child->id != px->nbr_cmd - 1)
         px_pipe_fds(px, child);
-    px_close_prev_fd(px, child, RD_END);
+    //px_close_prev_fd(px, child, RD_END);
     //if (child->id > 0)
     //    px_close_first_fds(px->child);
 
