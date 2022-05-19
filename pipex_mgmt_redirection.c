@@ -21,7 +21,7 @@ void    px_firstborn_dup(t_px *px, t_child *child)
         px_end_struct_exit(px);
     px_close_fd(&infile);
     px_close_fd(&(child->fds[RD_END]));
-    //px_close_fd(&(child->fds[WR_END]));
+    px_close_fd(&(child->fds[WR_END]));
 }
 
 void    px_lastborn_dup(t_px *px, t_child *child, t_child *prev_child)
@@ -29,7 +29,6 @@ void    px_lastborn_dup(t_px *px, t_child *child, t_child *prev_child)
     int outfile;
     (void)  child;
 
-    
     outfile = open(px->outfile, O_WRONLY | O_TRUNC | O_CREAT, 0644);
     px_check_open_sucess(outfile, px->outfile, px);
     if (dup2(prev_child->fds[RD_END], STDIN_FILENO) == -1
@@ -37,7 +36,7 @@ void    px_lastborn_dup(t_px *px, t_child *child, t_child *prev_child)
         px_end_struct_exit(px);
     px_close_fd(&outfile);
     px_close_fd(&(prev_child->fds[WR_END]));
-    //px_close_fd(&(prev_child->fds[RD_END]));
+    px_close_fd(&(prev_child->fds[RD_END]));
 }
 
 void    px_interborn_dup(t_px *px, t_child *child, t_child *prev_child)
@@ -47,11 +46,11 @@ void    px_interborn_dup(t_px *px, t_child *child, t_child *prev_child)
     if (dup2(prev_child->fds[RD_END], STDIN_FILENO) == -1
         || dup2(child->fds[WR_END], STDOUT_FILENO) == -1)
         px_end_struct_exit(px);
+    px_close_fd(&(prev_child->fds[RD_END]));
     px_close_fd(&(prev_child->fds[WR_END]));
-    //px_close_fd(&(child->fds[RD_END]));
+    px_close_fd(&(child->fds[RD_END]));
     px_close_fd(&(child->fds[WR_END]));
 }
-
 
 void    px_mgmt_redirection(t_px *px, t_child *child)
 {
