@@ -12,11 +12,10 @@ void    px_free_tab(char **tab)
 
 void    px_close_fds(int *fds)
 {
-        if (fds[0] > 2)
-            px_close_fd(&fds[0]);
-
-        if (fds[1] > 2)
-            px_close_fd(&fds[1]);
+    if (fds[0] > 2)
+        px_close_fd(&fds[RD_END]);
+    if (fds[1] > 2)
+        px_close_fd(&fds[WR_END]);
 }
 
 void    px_del_content(t_child *child)

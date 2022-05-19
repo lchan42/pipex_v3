@@ -29,11 +29,11 @@ char	*px_creat_accesspath(char *cmd, char **split_path)
 	return (ft_strdup(cmd));
 }
 
-void		px_init_cmd_n_path(char *cmd, char **split_path, t_child *child)
+void		px_set_cmd_n_path(char *cmd, char **split_path, t_child *child)
 {
     char *tmp;
-
-    if (px_entrycheck_isaccess_f_x(cmd))
+    
+    if (px_entrycheck_isaccess_f_x(cmd) || !split_path)
     {
         child->path = ft_strdup(cmd);
         tmp = ft_strdup(cmd + px_find_last_slash(child->path));

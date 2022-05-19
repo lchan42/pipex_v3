@@ -1,7 +1,5 @@
 #include "pipex.h"
 
-
-
 void    px_check_malloc_success(t_px *px, void *elem)
 {
     if (!elem)
@@ -53,14 +51,3 @@ t_child *px_get_prev_nod(t_list *child, int index)
     }
     return (NULL);
 }
-
-/*
-void    checkinit_struct_sucess(t_px *px)
-{
-    if (!px)
-    {
-        perror("./pipex ");
-        exit(errno);
-    }
-}*/
-//void	px_wait_inline()

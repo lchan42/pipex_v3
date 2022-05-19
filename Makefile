@@ -17,7 +17,7 @@ LIB	= ./libraries/libft/libft.a
 SRCS	=	main.c\
 			pipex_utils.c\
 			pipex_entrycheck.c\
-			pipex_exit.c\
+			pipex_print_err.c\
 			pipex_init_struct.c\
 			pipex_end_struct.c\
 			pipex_parsing_envp.c\

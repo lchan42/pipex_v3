@@ -1,19 +1,10 @@
 #include "pipex.h"
 
-void	px_strerror(char *input)
-{
-	ft_putstr_fd("./pipex: ", 2);
-	ft_putstr_fd(strerror(errno), 2);
-	ft_putstr_fd(input, 2);
-	ft_putstr_fd("\n", 2);
-}
-
 void	px_err_cmd_not_found(char *input)
 {
 	ft_putstr_fd("./pipex : command not found: ", 2);
 	ft_putstr_fd(input, 2);
 	ft_putstr_fd("\n", 2);
-	exit(127);
 }
 
 void	px_perror(char *input)

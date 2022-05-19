@@ -23,12 +23,12 @@ typedef struct s_child{
 }t_child;
 
 typedef struct s_px{
-	t_entry	entry;		//no malloc
-	char	*infile;	//no malloc nor open
-	char	*outfile;	//no malloc nor open
-	int		nbr_cmd;	//no malloc nor open
-	int		*pid_list;	//malloc
-	t_list	*child;		//malloc
+	t_entry	entry;
+	char	*infile;
+	char	*outfile;
+	int		nbr_cmd;
+	int		*pid_list;
+	t_list	*child;
 }t_px;
 
 enum e_error{
@@ -41,19 +41,12 @@ enum e_error{
 	CMD_NOT_FOUND,
 };
 
-//pipex_utils.c
-void	px_check_malloc_success(t_px *px, void *elem);
-void    px_check_open_sucess(int fd, char *input, t_px *px);
-void    px_close_fd(int *fd);
-t_child *px_get_child_nod(t_list *child, int index);
-t_child *px_get_prev_nod(t_list *child, int index);
-
 //pipex_entrycheck.c
 void	px_entrycheck_ac_file(int ac, char **av);
 int		px_entrycheck_isaccess_f_x(char *path);
 
 //pipex_get_cmdpath.c
-void	px_init_cmd_n_path(char *cmd, char **split_path, t_child *child);
+void	px_set_cmd_n_path(char *cmd, char **split_path, t_child *child);
 
 //pipex_parsing_envp.c
 char	**px_parsing_path(char **envp);
@@ -61,10 +54,26 @@ char	**px_parsing_path(char **envp);
 //pipex_init_struct.c
 t_px    *px_init_struct(int ac, char **av, char **envp);
 
-//px_perr_exit.c
+//px_print_err.c
 void	px_err_cmd_not_found(char *input);
 void	px_perror(char *input);
 void	px_perr_exit(int n, char *input);
+
+////pipex_mgmt_redirection.c
+void    px_mgmt_redirection(t_px *px, t_child *child);
+
+////pipex_mgmt_pipe.c
+void    px_mgmt_pipe(t_px *px, t_child *child);
+
+////pipex_no_birthcontrol_zone.c
+void    px_no_birthcontrol_zone(t_px *px, int i, t_child *current_child);
+
+////pipex_utils.c
+void	px_check_malloc_success(t_px *px, void *elem);
+void    px_check_open_sucess(int fd, char *input, t_px *px);
+void    px_close_fd(int *fd);
+t_child *px_get_child_nod(t_list *child, int index);
+t_child *px_get_prev_nod(t_list *child, int index);
 
 //pipex_end_struct.c
 void	px_free_tab(char **tab);
@@ -73,43 +82,11 @@ void    px_del_content(t_child *child);
 void    px_end_struct(t_px *px);
 void	px_end_struct_exit(t_px *px);
 
-//pipex_mgmt_redirection.c
-void    px_mgmt_redirection(t_px *px, t_child *child);
-
-//pipex_mgmt_pipe.c
-void    px_mgmt_pipe(t_px *px, t_child *child);
-
-//pipex_no_birthcontrol_zone.c
-void    px_no_birthcontrol_zone(t_px *px, int i, t_child *current_child);
-
-
-
-
 
 //del_print.c
 void	del_print_split_path(char **pasth_tab);
 void	del_print_tab_ac(int ac, char **av);
 void	del_print_child(t_child child);
-void	del_print_main_struct(t_px *px);
 void	visual_print_px(t_px *px);
 void	v_print_t_list(t_px *px, t_list *child);
 void	v_print_child_struct(t_px *px, t_child *child);
-
-
-
-
-
-
-
-
-
-
-
-//pipex_free.c
-void	px_free_tab(char **tab);
-void    px_free_av(int ac, char **av);
-void    px_end_struct(t_px *px);
-
-//pipex_utils.c
-
-

@@ -1,14 +1,5 @@
 #include "pipex.h"
 
-void    px_close_prev_fd(t_px *px, t_child *child, int fd_end)
-{
-    t_child *prev_child;
-
-    prev_child = px_get_prev_nod(px->child, child->id);
-    if (prev_child)
-        px_close_fd(&prev_child->fds[fd_end]);
-}
-
 void    px_close_first_fds(t_list *head)
 {
     while (head->next)
