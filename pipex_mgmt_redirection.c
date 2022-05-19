@@ -21,7 +21,7 @@ void    px_firstborn_dup(t_px *px, t_child *child)
         px_end_struct_exit(px);
     px_close_fd(&infile);
     px_close_fd(&(child->fds[RD_END]));
-    px_close_fd(&(child->fds[WR_END]));
+    //px_close_fd(&(child->fds[WR_END]));
 }
 
 void    px_lastborn_dup(t_px *px, t_child *child, t_child *prev_child)
@@ -37,7 +37,7 @@ void    px_lastborn_dup(t_px *px, t_child *child, t_child *prev_child)
         px_end_struct_exit(px);
     px_close_fd(&outfile);
     px_close_fd(&(prev_child->fds[WR_END]));
-    px_close_fd(&(prev_child->fds[RD_END]));
+    //px_close_fd(&(prev_child->fds[RD_END]));
 }
 
 void    px_interborn_dup(t_px *px, t_child *child, t_child *prev_child)
@@ -48,7 +48,7 @@ void    px_interborn_dup(t_px *px, t_child *child, t_child *prev_child)
         || dup2(child->fds[WR_END], STDOUT_FILENO) == -1)
         px_end_struct_exit(px);
     px_close_fd(&(prev_child->fds[WR_END]));
-    px_close_fd(&(child->fds[RD_END]));
+    //px_close_fd(&(child->fds[RD_END]));
     px_close_fd(&(child->fds[WR_END]));
 }
 
@@ -61,9 +61,4 @@ void    px_mgmt_redirection(t_px *px, t_child *child)
         px_lastborn_dup(px, child, px_get_prev_nod(px->child, child->id));
     else
         px_interborn_dup(px, child, px_get_prev_nod(px->child, child->id));
-    //v_print_child_struct(px, child);
-    //exceve(child->path, child->cmd, px->entry.envp);
-    //px_end_struct(px);
-    //exit(errno);
-    //px_end_struct(px); //gonna have to end and exit with error code
 }
