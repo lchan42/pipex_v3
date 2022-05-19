@@ -19,8 +19,7 @@ typedef struct s_child{
 	int		id;
 	char	*path;
 	char	**cmd;
-	int		*prev_fds;
-	int		*next_fds;
+	int		*fds;
 }t_child;
 
 typedef struct s_px{
@@ -69,7 +68,7 @@ void	px_perr_exit(int n, char *input);
 
 //pipex_end_struct.c
 void	px_free_tab(char **tab);
-void    px_close_free_fds(int   *fds);
+void	px_close_fds(int *fds);
 void    px_del_content(t_child *child);
 void    px_end_struct(t_px *px);
 void	px_end_struct_exit(t_px *px);
@@ -103,14 +102,6 @@ void	v_print_child_struct(t_px *px, t_child *child);
 
 
 
-
-
-
-
-
-
-//pipex_pipe_mgmt.c
-void	px_pipe_fds(t_px *px, int child_index);
 
 
 

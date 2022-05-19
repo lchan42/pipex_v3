@@ -10,14 +10,13 @@ void    px_free_tab(char **tab)
     free (tab);
 }
 
-void    px_close_free_fds(int *fds)
+void    px_close_fds(int *fds)
 {
         if (fds[0] > 2)
-            close (fds[0]);
+            px_close_fd(&fds[0]);
+
         if (fds[1] > 2)
-            close (fds[1]);
-        free(fds);
-        fds = NULL;
+            px_close_fd(&fds[1]);
 }
 
 void    px_del_content(t_child *child)
@@ -28,10 +27,12 @@ void    px_del_content(t_child *child)
         free(child->path);
     if (child->cmd)
         px_free_tab(child->cmd);
-    if (child->prev_fds)
-        px_close_free_fds(child->prev_fds);
-    if (child->next_fds)
-        px_close_free_fds(child->next_fds);
+    if (child->fds)
+    {
+        px_close_fds(child->fds);
+        free(child->fds);
+        child->fds = NULL;
+    }
     free(child);
     child = NULL;
 }
