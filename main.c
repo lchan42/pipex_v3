@@ -9,12 +9,21 @@ void	px_close_all_fds(t_list *child)
 	}
 }
 
+void	px_wait_for_pids(t_px *px)
+{
+	int		child_index;
+	int		status;
+
+	child_index = -1;
+	while (++child_index < px->nbr_cmd)
+		waitpid(px->pid_list[child_index], &status, 0);
+}
+
 int main(int ac, char **av, char **envp)
 {
 	t_px	*px;
 	int		child_index;
 	t_child	*current_child;
-	int		status;
 
 	child_index = -1;
 	px_entrycheck_ac_file(ac, av);
@@ -26,9 +35,7 @@ int main(int ac, char **av, char **envp)
 		px_no_birthcontrol_zone(px, child_index, current_child);
 	}
 	px_close_all_fds(px->child);
-	child_index = -1;
-	while (++child_index < px->nbr_cmd)
-		waitpid(px->pid_list[child_index], &status, 0);
+	px_wait_for_pids(px);
 	px_end_struct(px); 
 	return(0);
 }

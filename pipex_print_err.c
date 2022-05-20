@@ -2,7 +2,7 @@
 
 void	px_err_cmd_not_found(char *input)
 {
-	ft_putstr_fd("./pipex : command not found: ", 2);
+	ft_putstr_fd("./pipex: command not found: ", 2);
 	ft_putstr_fd(input, 2);
 	ft_putstr_fd("\n", 2);
 }
