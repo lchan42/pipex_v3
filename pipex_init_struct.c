@@ -61,6 +61,7 @@ t_px    *px_init_struct(int ac, char **av, char **envp)
     px = malloc(sizeof(t_px));
     px_check_malloc_success(px, px);
     init_t_entry(ac, av, envp, px);
+    px->hdoc_flag = here_doc;
     px->infile = av[1];
     px->outfile = av[ac - 1];
     px->nbr_cmd = ac - (shift + 1);

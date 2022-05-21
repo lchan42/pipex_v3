@@ -24,7 +24,7 @@ typedef struct s_child{
 
 typedef struct s_px{
 	t_entry	entry;
-	//int		hdoc_flag;
+	int		hdoc_flag;
 	char	*infile;
 	char	*outfile;
 	int		nbr_cmd;

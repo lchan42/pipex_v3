@@ -6,7 +6,6 @@ int    px_entrycheck_ac_file(int ac, char **av)
     {
         if (ac <= 5)
             px_perr_exit(NOT_ENOUGH_ARG, " ");
-        fprintf(stderr, "here_doc is here\n");
         return (1);
     }
     else if (ac <= 4)
