@@ -17,6 +17,7 @@ int    px_entrycheck_ac_file(int ac, char **av)
  *      see if the entry is just "here_doc" and not "here_doc"+garbage
  * ***************************************/
 
+
 int px_entrycheck_isaccess_f_x(char *path)
 {
     if (access(path, F_OK) != 0 && access(path, X_OK) != 0)

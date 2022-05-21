@@ -19,26 +19,6 @@ void	px_wait_for_pids(t_px *px)
 		waitpid(px->pid_list[child_index], &status, 0);
 }
 
-int ft_strcmp(const char *s1, const char *s2)
-{
-    size_t min_len;
-    int len_s1;
-    int len_s2;
-
-    if (!s1 || !s2)
-        min_len = 0;
-    else
-    {
-        len_s1 = ft_strlen(s1);
-        len_s2 = ft_strlen(s2);
-    }
-    if (len_s1 < len_s2)
-        min_len = len_s1;
-    else
-        min_len = len_s2;
-    return(ft_strncmp(s1, s2, min_len + 1));
-}
-
 int	px_limiter_strncomp(const char *lim, const char *gnl, size_t lim_len)
 {
 	size_t	i;
@@ -90,6 +70,7 @@ int main(int ac, char **av, char **envp)
 	px = px_init_struct(ac, av, envp);
 	if (px->hdoc_flag)
 		px_init_here_doc(px);
+	visual_print_px(px);
 	while (++child_index < px->nbr_cmd)
 	{
 		current_child = px_get_child_nod(px->child, child_index);
