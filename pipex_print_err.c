@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 23:51:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/05/21 23:51:10 by lchan            ###   ########.fr       */
+/*   Updated: 2022/05/22 00:43:34 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	px_err_permission_denied(char *input)
 
 void	px_perror(char *input)
 {
-	char *err_msg;
+	char	*err_msg;
 
 	err_msg = ft_strjoin("./pipex: ", input);
 	perror(err_msg);

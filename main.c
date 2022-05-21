@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/22 00:39:25 by lchan             #+#    #+#             */
+/*   Updated: 2022/05/22 00:40:03 by lchan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	px_close_all_fds(t_list *child)
@@ -19,27 +31,27 @@ void	px_wait_for_pids(t_px *px)
 		waitpid(px->pid_list[child_index], &status, 0);
 }
 
-void     px_init_here_doc(t_px *px)
+void	px_init_here_doc(t_px *px)
 {
-    int infile;
-    char *gnl;
+	int		infile;
+	char	*gnl;
 
-    infile = open(px->infile, O_RDWR | O_TRUNC | O_CREAT, 0644);
-    px_check_open_sucess(infile, px->infile, px);
-    while (1)
-    {
-        gnl = get_next_line_pipex(STDIN_FILENO, px->entry.av[2]);
+	infile = open(px->infile, O_RDWR | O_TRUNC | O_CREAT, 0644);
+	px_check_open_sucess(infile, px->infile, px);
+	while (1)
+	{
+		gnl = get_next_line_pipex(STDIN_FILENO, px->entry.av[2]);
 		if (!gnl)
 		{
 			close(infile);
-            return ;
+			return ;
 		}
-        ft_putstr_fd(gnl, infile);
+		ft_putstr_fd(gnl, infile);
 		free(gnl);
-    }
+	}
 }
 
-int main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
 	t_px	*px;
 	int		child_index;
@@ -57,6 +69,6 @@ int main(int ac, char **av, char **envp)
 	}
 	px_close_all_fds(px->child);
 	px_wait_for_pids(px);
-	px_end_struct(px); 
-	return(0);
+	px_end_struct(px);
+	return (0);
 }

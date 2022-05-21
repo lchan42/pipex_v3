@@ -6,19 +6,22 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 23:49:17 by lchan             #+#    #+#             */
-/*   Updated: 2022/05/21 23:49:40 by lchan            ###   ########.fr       */
+/*   Updated: 2022/05/22 00:38:51 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/wait.h>
-#include <sys/stat.h>
-#include <errno.h>
-#include "./libraries/libft/libft.h"
+#ifndef PIPEX_H
+# define PIPEX_H
 
-#define RD_END 0
-#define WR_END 1
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
+# include <errno.h>
+# include "./libraries/libft/libft.h"
+
+# define RD_END 0
+# define WR_END 1
 
 typedef struct s_entry{
 	int		ac;
@@ -64,7 +67,7 @@ void	px_set_cmd_n_path(char *cmd, char **split_path, t_child *child);
 char	**px_parsing_path(char **envp);
 
 //pipex_init_struct.c
-t_px    *px_init_struct(int ac, char **av, char **envp);
+t_px	*px_init_struct(int ac, char **av, char **envp);
 
 //px_print_err.c
 void	px_err_cmd_not_found(char *input);
@@ -73,27 +76,29 @@ void	px_perror(char *input);
 void	px_perr_exit(int n, char *input);
 
 ////pipex_mgmt_redirection.c
-void    px_mgmt_redirection(t_px *px, t_child *child);
+void	px_mgmt_redirection(t_px *px, t_child *child);
 
 ////pipex_mgmt_pipe.c
-void    px_mgmt_pipe(t_px *px, t_child *child);
+void	px_mgmt_pipe(t_px *px, t_child *child);
 
 ////pipex_no_birthcontrol_zone.c
-void    px_no_birthcontrol_zone(t_px *px, int i, t_child *current_child);
+void	px_no_birthcontrol_zone(t_px *px, int i, t_child *current_child);
 
 ////pipex_utils.c
 void	px_check_malloc_success(t_px *px, void *elem);
-void    px_check_open_sucess(int fd, char *input, t_px *px);
-void    px_close_fd(int *fd);
-t_child *px_get_child_nod(t_list *child, int index);
-t_child *px_get_prev_nod(t_list *child, int index);
+void	px_check_open_sucess(int fd, char *input, t_px *px);
+void	px_close_fd(int *fd);
+t_child	*px_get_child_nod(t_list *child, int index);
+t_child	*px_get_prev_nod(t_list *child, int index);
 
 //pipex_end_struct.c
 void	px_free_tab(char **tab);
 void	px_close_fds(int *fds);
-void    px_del_content(t_child *child);
-void    px_end_struct(t_px *px);
+void	px_del_content(t_child *child);
+void	px_end_struct(t_px *px);
 void	px_end_struct_exit(t_px *px);
+
+#endif
 
 /*
 //del_print.c
