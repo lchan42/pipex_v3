@@ -26,7 +26,6 @@ int main(int ac, char **av, char **envp)
 	t_child	*current_child;
 
 	child_index = -1;
-	px_entrycheck_ac_file(ac, av);
 	px = px_init_struct(ac, av, envp);
 	while (++child_index < px->nbr_cmd)
 	{

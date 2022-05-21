@@ -4,7 +4,7 @@ void    px_check_malloc_success(t_px *px, void *elem)
 {
     if (!elem)
     {
-        perror("./pipex ");
+        perror("./pipex");
         px_end_struct(px);
         exit(errno);
     }

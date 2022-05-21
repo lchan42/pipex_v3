@@ -24,6 +24,7 @@ typedef struct s_child{
 
 typedef struct s_px{
 	t_entry	entry;
+	//int		hdoc_flag;
 	char	*infile;
 	char	*outfile;
 	int		nbr_cmd;
@@ -42,7 +43,7 @@ enum e_error{
 };
 
 //pipex_entrycheck.c
-void	px_entrycheck_ac_file(int ac, char **av);
+int		px_entrycheck_ac_file(int ac, char **av);
 int		px_entrycheck_isaccess_f_x(char *path);
 
 //pipex_get_cmdpath.c

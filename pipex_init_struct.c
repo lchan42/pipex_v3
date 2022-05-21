@@ -54,8 +54,10 @@ t_px    *px_init_struct(int ac, char **av, char **envp)
 {
     t_px    *px;
     int     shift;
+    int     here_doc;
 
-    shift = 2; //add function px_getshift(av); if here doc bonus
+    here_doc = px_entrycheck_ac_file(ac, av); 
+    shift = 2 + here_doc;
     px = malloc(sizeof(t_px));
     px_check_malloc_success(px, px);
     init_t_entry(ac, av, envp, px);

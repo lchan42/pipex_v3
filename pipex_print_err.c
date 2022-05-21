@@ -2,16 +2,34 @@
 
 void	px_err_cmd_not_found(char *input)
 {
-	ft_putstr_fd("./pipex: command not found: ", 2);
-	ft_putstr_fd(input, 2);
-	ft_putstr_fd("\n", 2);
+	char	*err_msg;
+	char	*tmp;
+
+	tmp = ft_strjoin("./pipex: command not found: ", input);
+	err_msg = ft_strjoin(tmp, "\n");
+	free(tmp);
+	ft_putstr_fd(err_msg, 2);
+	free(err_msg);
 }
+
+/*void	px_perror(char *input)
+{
+	char *err_msg;
+
+	err_msg = ft_strjoin("./pipex: ", input);
+	//ft_putstr_fd("./pipex: ", 2);
+	perror(err_msg);
+	free(err_msg);
+}*/
 
 void	px_perror(char *input)
 {
-	ft_putstr_fd("./pipex: ", 2);
-	ft_putstr_fd(input, 2);
-	perror(" ");
+	char *err_msg;
+
+	err_msg = ft_strjoin("./pipex: ", input);
+	//ft_putstr_fd("./pipex: ", 2);
+	perror(err_msg);
+	free(err_msg);
 }
 
 void	px_perr_exit(int n, char *input)
