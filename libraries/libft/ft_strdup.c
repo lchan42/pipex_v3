@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 16:49:05 by lchan             #+#    #+#             */
-/*   Updated: 2022/05/21 18:19:18 by lchan            ###   ########.fr       */
+/*   Updated: 2022/05/21 23:39:52 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strdup(const char *s1)
 {
 	size_t	len;
 	char	*dup;
-	
+
 	if (s1)
 		len = ft_strlen(s1);
 	else

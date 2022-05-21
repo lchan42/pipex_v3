@@ -57,6 +57,7 @@ t_px    *px_init_struct(int ac, char **av, char **envp);
 
 //px_print_err.c
 void	px_err_cmd_not_found(char *input);
+void	px_err_permission_denied(char *input);
 void	px_perror(char *input);
 void	px_perr_exit(int n, char *input);
 

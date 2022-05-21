@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 15:17:44 by lchan             #+#    #+#             */
-/*   Updated: 2022/05/20 17:42:28 by lchan            ###   ########.fr       */
+/*   Updated: 2022/05/21 22:26:54 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ t_gnl	*ft_lst_init_addback(t_gnl **head, int fd);
 void	ft_rebuild_buff(t_gnl *nod);
 void	gnl_build_content(t_gnl **nod, int fd);
 char	*get_next_line(int fd);
+char	*get_next_line_pipex(int fd, char *limiter);
 
 #endif
