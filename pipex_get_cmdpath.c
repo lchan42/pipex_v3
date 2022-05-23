@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 23:50:14 by lchan             #+#    #+#             */
-/*   Updated: 2022/05/23 12:23:12 by lchan            ###   ########.fr       */
+/*   Updated: 2022/05/23 15:16:26 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	px_find_last_slash(char *path)
 	return (slash);
 }
 
-char	*px_creat_accesspath(char *cmd, char **split_path)
+char	*px_creat_cmdpath(char *cmd, char **split_path)
 {
 	int		i;
 	char	*path;
@@ -52,7 +52,10 @@ void	px_set_cmd_n_path(char *cmd, char **split_path, t_child *child)
 	}
 	else if (px_entrycheck_isaccess_f_x(cmd) || !split_path)
 	{
-		child->path = ft_strdup(cmd);
+		if (ft_strchr(cmd, ' '))
+			child->path = ft_strtrim(cmd, ft_strchr(cmd, ' '));
+		else
+			child->path = ft_strdup(cmd);
 		tmp = ft_strdup(cmd + px_find_last_slash(child->path));
 		child->cmd = ft_split(tmp, ' ');
 		free(tmp);
@@ -63,6 +66,6 @@ void	px_set_cmd_n_path(char *cmd, char **split_path, t_child *child)
 			child->cmd = ft_split(cmd, ' ');
 		else
 			child->cmd = ft_split(cmd, 0);
-		child->path = px_creat_accesspath(child->cmd[0], split_path);
+		child->path = px_creat_cmdpath(child->cmd[0], split_path);
 	}
 }
