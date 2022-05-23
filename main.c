@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 00:39:25 by lchan             #+#    #+#             */
-/*   Updated: 2022/05/23 11:50:06 by lchan            ###   ########.fr       */
+/*   Updated: 2022/05/23 12:21:58 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	main(int ac, char **av, char **envp)
 	px = px_init_struct(ac, av, envp);
 	if (px->hdoc_flag)
 		px_init_here_doc(px);
-	//visual_print_px(px);
 	while (++child_index < px->nbr_cmd)
 	{
 		current_child = px_get_child_nod(px->child, child_index);

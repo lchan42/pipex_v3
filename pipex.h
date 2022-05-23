@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 23:49:17 by lchan             #+#    #+#             */
-/*   Updated: 2022/05/23 11:41:05 by lchan            ###   ########.fr       */
+/*   Updated: 2022/05/23 12:21:49 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void	px_del_content(t_child *child);
 void	px_end_struct(t_px *px);
 void	px_end_struct_exit(t_px *px);
 
+#endif
+/*
 //del_print.c
 void	del_print_split_path(char **pasth_tab);
 void	del_print_tab_ac(int ac, char **av);
@@ -105,9 +107,4 @@ void	del_print_child(t_child child);
 void	visual_print_px(t_px *px);
 void	v_print_t_list(t_px *px, t_list *child);
 void	v_print_child_struct(t_px *px, t_child *child);
-
-#endif
-
-
-
-
+*/

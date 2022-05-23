@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 23:50:54 by lchan             #+#    #+#             */
-/*   Updated: 2022/05/22 00:42:47 by lchan            ###   ########.fr       */
+/*   Updated: 2022/05/23 12:15:59 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	px_child_exceve(t_px *px, t_child *child)
 {
-	px_mgmt_redirection(px, child);
 	if (px_entrycheck_isaccess_f_x(child->path))
+	{
+		px_mgmt_redirection(px, child);
 		execve(child->path, child->cmd, px->entry.envp);
+	}
 	if (ft_strncmp(child->path, "access denied", 13) == 0)
 		px_err_permission_denied("");
 	else

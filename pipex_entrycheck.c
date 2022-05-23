@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 23:50:05 by lchan             #+#    #+#             */
-/*   Updated: 2022/05/23 12:00:40 by lchan            ###   ########.fr       */
+/*   Updated: 2022/05/23 12:13:40 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	px_entrycheck_ac_file(int ac, char **av)
 {
-	if (ac > 1 && ft_strncmp(av[1], "here_doc", 9) == 0)
+	if (ac <= 4)
+		px_perr_exit(NOT_ENOUGH_ARG, " ");
+	else if (ft_strncmp(av[1], "here_doc", 9) == 0)
 	{
 		if (ac <= 5)
 			px_perr_exit(NOT_ENOUGH_ARG, " ");
 		return (1);
 	}
-	else if (ac <= 4)
-		px_perr_exit(NOT_ENOUGH_ARG, " ");
 	return (0);
 }
 /*****************************************
