@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 23:50:14 by lchan             #+#    #+#             */
-/*   Updated: 2022/05/22 00:32:24 by lchan            ###   ########.fr       */
+/*   Updated: 2022/05/23 11:35:34 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	px_find_last_slash(char *path)
 	int	slash;
 
 	i = -1;
+	slash = i + 1;
 	while (path[++i])
 		if (path[i] == '/')
 			slash = i + 1;
@@ -42,6 +43,7 @@ char	*px_creat_accesspath(char *cmd, char **split_path)
 
 void	px_set_cmd_n_path(char *cmd, char **split_path, t_child *child)
 {
+	char *tmp;
 	if (ft_strlen(cmd) == 0)
 	{
 		child->cmd = ft_split(cmd, ' ');
@@ -50,7 +52,13 @@ void	px_set_cmd_n_path(char *cmd, char **split_path, t_child *child)
 	else if (px_entrycheck_isaccess_f_x(cmd) || !split_path)
 	{
 		child->path = ft_strdup(cmd);
-		child->cmd = ft_split(cmd, 0);
+        tmp = ft_strdup(cmd + px_find_last_slash(child->path));
+        child->cmd = ft_split(tmp, ' ');
+        free(tmp);
+		/*
+		child->path = ft_strdup(cmd);
+		child->cmd = ft_split(cmd, 0);*
+		*/
 	}
 	else
 	{
