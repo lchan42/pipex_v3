@@ -6,7 +6,7 @@
 #    By: lchan <lchan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/05/20 17:43:12 by lchan            ###   ########.fr        #
+#    Updated: 2022/05/23 12:03:23 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ OBJS		= ${SRCS:.c=.o}
 CC			= gcc
 RM			= rm -f
 
-CFLAGS		= -Wall -Werror -Wextra 
+CFLAGS		= -g3 -Wall -Werror -Wextra 
 
 AR			= ar
 

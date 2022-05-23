@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lchan <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: lchan <lchan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/04/12 18:22:42 by lchan            ###   ########.fr        #
+#    Updated: 2022/05/23 11:53:08 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,25 +27,25 @@ SRCS	=	main.c\
 			pipex_no_birthcontrol_zone.c\
 			del_visual.c
 
-SRCSBONUS =	
+SRCSBONUS =
 
 NAME		= pipex
 HEADER		= pipex.h
 
 OBJS		= ${SRCS:.c=.o}
-					
+
 OBJSBONUS	= ${SRCSBONUS:.c=.o}
 %.o: %.c
-			${CC} ${CFLAGS} -c $< -o $@
+			${CC} -g3 ${CFLAGS} -c $< -o $@
 
 CC			= gcc
 MAKE		= make
 RM			= rm -f
 CFLAGS		= -Wall -Werror -Wextra
-DEBUGFLAGS	= -g3 -fsanitize=address
+DEBUGFLAGS	= -g3 #-fsanitize=address
 
 
-all:		${NAME} 
+all:		${NAME}
 
 ${OBJS}:	${HEADER}
 
@@ -64,10 +64,10 @@ g3:			${OBJS}
 bonus:		${NAME} ${OBJS} ${OBJSBONUS}
 			${AR} ${ARFLAGS} ${NAME} ${OBJSBONUS}
 
-cleanlib :	
+cleanlib :
 			${MAKE} -C ${LIBPATH} clean
 
-clean:		cleanlib	
+clean:		cleanlib
 			${RM} ${OBJS} ${OBJSBONUS}
 
 cleanb:		clean
@@ -99,23 +99,23 @@ c:			all clean
 #
 #$<: The filename of the first prerequisite.
 #
-#$?: The names of all prerequisites that are newer than the target, 
+#$?: The names of all prerequisites that are newer than the target,
 #	separated by spaces.
 #
-#$^: The filenames of all the prerequisites, separated by spaces. 
-#	 This list has duplicate filenames removed since for most uses, 
+#$^: The filenames of all the prerequisites, separated by spaces.
+#	 This list has duplicate filenames removed since for most uses,
 #	 such as compiling, copying, etc., duplicates are not wanted.
 #
-#$+: Similar to $^, this is the names of all the prerequisites 
-#	 separated by spaces, except that $+ includes duplicates. 
-#	 This variable was created for specific situations such as arguments 
+#$+: Similar to $^, this is the names of all the prerequisites
+#	 separated by spaces, except that $+ includes duplicates.
+#	 This variable was created for specific situations such as arguments
 #	 to linkers where duplicate values have meaning.
 #
-#$*: The stem of the target filename. A stem is typically a filename 
+#$*: The stem of the target filename. A stem is typically a filename
 #	 without its suffix. Its use outside of pattern rules is discouraged.
 #
 #------------------------------man make ----------------------------------
 #-C : open a make inside a folder
-#	  (can also do --directory=dir (dir = folders name ./librairie/libft)) 
+#	  (can also do --directory=dir (dir = folders name ./librairie/libft))
 #
 ##########################################################################
