@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 23:50:05 by lchan             #+#    #+#             */
-/*   Updated: 2022/05/23 15:02:45 by lchan            ###   ########.fr       */
+/*   Updated: 2022/05/24 19:18:28 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,7 @@ int	px_entrycheck_ac_file(int ac, char **av)
 
 int	px_entrycheck_isaccess_f_x(char *path)
 {
-	/*if (access(path, F_OK) != 0)//
-		fprintf(stderr, "F is not ok for path %s\n", path);//
-	if (access(path, X_OK) != 0)//
-		fprintf(stderr, "X is not ok for path %s\n", path);//*/
 	if (access(path, F_OK) != 0 && access(path, X_OK) != 0)
-	//{
-	//	fprintf(stderr, "F X is OK for path %s\n", path);//
-
 		return (0);
-	//}
 	return (1);
 }

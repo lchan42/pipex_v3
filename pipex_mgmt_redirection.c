@@ -6,7 +6,7 @@
 /*   By: lchan <lchan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 23:50:48 by lchan             #+#    #+#             */
-/*   Updated: 2022/05/23 16:03:48 by lchan            ###   ########.fr       */
+/*   Updated: 2022/05/24 19:19:21 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 void	px_firstborn_dup(t_px *px, t_child *child, int infile)
 {
-	//int	infile;
-
-	//infile = open(px->infile, O_RDONLY);
-	//px_check_open_sucess(infile, px->infile, px);
 	if (dup2(infile, STDIN_FILENO) == -1
 		|| dup2(child->fds[WR_END], STDOUT_FILENO) == -1)
 		px_end_struct_exit(px);
@@ -29,13 +25,6 @@ void	px_firstborn_dup(t_px *px, t_child *child, int infile)
 
 void	px_lastborn_dup(t_px *px, t_child *prev_child, int outfile)
 {
-	//int		outfile;
-
-/*	if (px->hdoc_flag)
-		outfile = open(px->outfile, O_WRONLY | O_APPEND | O_CREAT, 0644);
-	else
-		outfile = open(px->outfile, O_WRONLY | O_TRUNC | O_CREAT, 0644);
-	px_check_open_sucess(outfile, px->outfile, px);*/
 	if (dup2(prev_child->fds[RD_END], STDIN_FILENO) == -1
 		|| dup2(outfile, STDOUT_FILENO) == -1)
 		px_end_struct_exit(px);
