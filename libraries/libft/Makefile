@@ -6,7 +6,7 @@
 #    By: lchan <lchan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/05/23 12:03:23 by lchan            ###   ########.fr        #
+#    Updated: 2022/05/25 17:59:40 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS	=	ft_atoi.c\
 			ft_strmapi.c\
 			ft_strncmp.c\
 			ft_strnstr.c\
+			ft_strchr_boolean.c\
 			ft_strrchr.c\
 			ft_strtrim.c\
 			ft_substr.c\
@@ -66,7 +67,7 @@ OBJS		= ${SRCS:.c=.o}
 CC			= gcc
 RM			= rm -f
 
-CFLAGS		= -g3 -Wall -Werror -Wextra 
+CFLAGS		= -g3 -Wall -Werror -Wextra
 
 AR			= ar
 
@@ -77,7 +78,7 @@ RAN			= ranlib
 %.o: %.c
 			${CC} ${CFLAGS} -c $< -o $@
 
-all:		${NAME} 
+all:		${NAME}
 
 $(OBJS):	${INC}
 
